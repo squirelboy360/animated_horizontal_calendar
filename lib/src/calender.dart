@@ -267,18 +267,29 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       context: context,
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
-        return CupertinoDatePicker(
-          onDateTimeChanged: widget.onIOSDateChanged ??
-              (dateTime) {
-                selectedCalenderDate = dateTime;
-                if (kDebugMode) {
-                  print('==>$dateTime<==');
-                }
-              },
-          minimumDate: minimumDate,
-          maximumDate: widget.lastDate ?? currentDate.add(Duration(days: 30)),
-          mode: CupertinoDatePickerMode.date,
-          initialDateTime: selectedCalenderDate,
+        return CupertinoActionSheet(
+          actions: [
+            CupertinoButton(
+                child: Text('Select'),
+                onPressed: () {
+                  Navigator.pop(context);
+                })
+          ],
+          cancelButton: Text('Cancel'),
+          title: Text('Choose Date'),
+          message: CupertinoDatePicker(
+            onDateTimeChanged: widget.onIOSDateChanged ??
+                (dateTime) {
+                  selectedCalenderDate = dateTime;
+                  if (kDebugMode) {
+                    print('==>$dateTime<==');
+                  }
+                },
+            minimumDate: minimumDate,
+            maximumDate: widget.lastDate ?? currentDate.add(Duration(days: 30)),
+            mode: CupertinoDatePickerMode.date,
+            initialDateTime: selectedCalenderDate,
+          ),
         );
       },
     );
