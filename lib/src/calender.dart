@@ -261,9 +261,9 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                   }
                 },
             minimumDate:
-                widget.lastDate ?? DateTime.now().subtract(Duration(days: 30)),
-            maximumDate:
                 widget.lastDate ?? DateTime.now().add(Duration(days: 30)),
+            maximumDate:
+                widget.lastDate ?? DateTime.now().subtract(Duration(days: 30)),
             mode: CupertinoDatePickerMode.date,
             initialDateTime: selectedCalenderDate,
           );
