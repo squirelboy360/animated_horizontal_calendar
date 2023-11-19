@@ -267,28 +267,40 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       context: context,
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
-        return CupertinoActionSheet(
-          actions: [
-            CupertinoButton(
-                child: Text('Select'),
+        return SizedBox(
+          height: MediaQuery.sizeOf(context).height / 2,
+          child: CupertinoActionSheet(
+            actions: [
+              CupertinoButton(
+                  color: CupertinoColors.destructiveRed,
+                  child: Text('Select'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  })
+            ],
+            // Pops pop-up from stack (
+            ////!useless.//! Just to give the user a special IOS feel );
+            ///
+            cancelButton: CupertinoButton(
+                child: Text('Cancel'),
                 onPressed: () {
                   Navigator.pop(context);
-                })
-          ],
-          cancelButton: Text('Cancel'),
-          title: Text('Choose Date'),
-          message: CupertinoDatePicker(
-            onDateTimeChanged: widget.onIOSDateChanged ??
-                (dateTime) {
-                  selectedCalenderDate = dateTime;
-                  if (kDebugMode) {
-                    print('==>$dateTime<==');
-                  }
-                },
-            minimumDate: minimumDate,
-            maximumDate: widget.lastDate ?? currentDate.add(Duration(days: 30)),
-            mode: CupertinoDatePickerMode.date,
-            initialDateTime: selectedCalenderDate,
+                }),
+            title: Text('Choose Date'),
+            message: CupertinoDatePicker(
+              onDateTimeChanged: widget.onIOSDateChanged ??
+                  (dateTime) {
+                    selectedCalenderDate = dateTime;
+                    if (kDebugMode) {
+                      print('==>$dateTime<==');
+                    }
+                  },
+              minimumDate: minimumDate,
+              maximumDate:
+                  widget.lastDate ?? currentDate.add(Duration(days: 30)),
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: selectedCalenderDate,
+            ),
           ),
         );
       },
