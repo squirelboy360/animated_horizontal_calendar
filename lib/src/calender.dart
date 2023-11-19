@@ -247,8 +247,8 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
     );
   }
 
-  Future<DateTime?> selectDateFromIOS() async {
-    return await showCupertinoDialog(
+  Future<DateTime?> selectDateFromIOS() {
+    return showCupertinoDialog(
         context: context,
         builder: (context) {
           //If ios onIOSDateChanged param becomes a must
@@ -260,9 +260,9 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                     print('==>$dateTime<==');
                   }
                 },
-            minimumDate: DateTime.tryParse('2023-1-1'),
+
             mode: CupertinoDatePickerMode.date,
-            initialDateTime: selectedCalenderDate,
+            // initialDateTime: selectedCalenderDate,
           );
         });
   }
