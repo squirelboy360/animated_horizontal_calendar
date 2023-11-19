@@ -254,12 +254,12 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
           //If ios onIOSDateChanged param becomes a must
           return CupertinoDatePicker(
             onDateTimeChanged: widget.onIOSDateChanged ??
-                (time) {
+                (dateTime) {
+                  selectedCalenderDate = dateTime;
                   if (kDebugMode) {
-                    print('==>$time<==');
+                    print('==>$dateTime<==');
                   }
                 },
-            maximumYear: 2060,
             mode: CupertinoDatePickerMode.date,
             initialDateTime: selectedCalenderDate,
           );
