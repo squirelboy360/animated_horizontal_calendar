@@ -268,22 +268,9 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
         return CupertinoActionSheet(
-          actions: [
-            CupertinoButton(
-                child: Text('Select'),
-                onPressed: () {
-                  Navigator.pop(context);
-                })
-          ],
-          // Pops pop-up from stack (
-          ////!useless.//! Just to give the user a special IOS feel );
-          ///
           cancelButton: CupertinoButton(
               child: Text(
-                'Cancel',
-                style: TextStyle(
-                  color: CupertinoColors.destructiveRed,
-                ),
+                'show selection',
               ),
               onPressed: () {
                 Navigator.pop(context);
