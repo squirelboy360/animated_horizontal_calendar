@@ -109,16 +109,16 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
     return SingleChildScrollView(
       controller: _scrollController,
       scrollDirection: Axis.horizontal,
-      reverse: true,
+     
       child: Container(
         child: Row(
           children: <Widget>[
             SizedBox(width: 10),
             ListView.builder(
-              reverse: true,
               itemCount: 7,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
+              reverse: true,
               itemBuilder: (context, index) {
                 //if _date is not provided, then DateTime.now
                 DateTime _date =
