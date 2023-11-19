@@ -254,8 +254,14 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
   }
 
   Future<DateTime?> selectDateFromIOS() {
+    DateTime currentDate = DateTime.now();
     DateTime minimumDate =
-        widget.initialDate ?? DateTime.now().subtract(Duration(days: 30));
+        widget.initialDate ?? currentDate.subtract(Duration(days: 30));
+
+    if (widget.initialDate != null &&
+        widget.initialDate!.isAfter(currentDate)) {
+      minimumDate = widget.initialDate!;
+    }
 
     return showCupertinoDialog(
       context: context,
@@ -270,8 +276,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                 }
               },
           minimumDate: minimumDate,
-          maximumDate:
-              widget.lastDate ?? DateTime.now().add(Duration(days: 30)),
+          maximumDate: widget.lastDate ?? currentDate.add(Duration(days: 30)),
           mode: CupertinoDatePickerMode.date,
           initialDateTime: selectedCalenderDate,
         );
