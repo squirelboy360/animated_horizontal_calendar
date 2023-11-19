@@ -115,6 +115,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
           children: <Widget>[
             SizedBox(width: 10),
             ListView.builder(
+              reverse: true,
               itemCount: 7,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
