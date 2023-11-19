@@ -289,7 +289,9 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                 Navigator.pop(context);
               }),
           title: Text('Choose Date'),
-          message: Expanded(
+          message: SizedBox(
+            height: MediaQuery.sizeOf(context).height / 2.2,
+            width: double.infinity,
             child: CupertinoDatePicker(
               onDateTimeChanged: widget.onIOSDateChanged ??
                   (dateTime) {
