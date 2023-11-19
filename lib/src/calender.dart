@@ -267,12 +267,10 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       context: context,
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
-        return SizedBox(
-          height: MediaQuery.sizeOf(context).height / 2,
+        return Expanded(
           child: CupertinoActionSheet(
             actions: [
               CupertinoButton(
-                  color: CupertinoColors.destructiveRed,
                   child: Text('Select'),
                   onPressed: () {
                     Navigator.pop(context);
@@ -282,6 +280,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
             ////!useless.//! Just to give the user a special IOS feel );
             ///
             cancelButton: CupertinoButton(
+                color: CupertinoColors.destructiveRed,
                 child: Text('Cancel'),
                 onPressed: () {
                   Navigator.pop(context);
