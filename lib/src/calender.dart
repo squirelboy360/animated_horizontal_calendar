@@ -267,43 +267,46 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       context: context,
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
-        return CupertinoActionSheet(
-          actions: [
-            CupertinoButton(
-                child: Text('Select'),
+        return Positioned(
+          top: MediaQuery.sizeOf(context).height / 2,
+          child: CupertinoActionSheet(
+            actions: [
+              CupertinoButton(
+                  child: Text('Select'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  })
+            ],
+            // Pops pop-up from stack (
+            ////!useless.//! Just to give the user a special IOS feel );
+            ///
+            cancelButton: CupertinoButton(
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: CupertinoColors.destructiveRed,
+                  ),
+                ),
                 onPressed: () {
                   Navigator.pop(context);
-                })
-          ],
-          // Pops pop-up from stack (
-          ////!useless.//! Just to give the user a special IOS feel );
-          ///
-          cancelButton: CupertinoButton(
-              child: Text(
-                'Cancel',
-                style: TextStyle(
-                  color: CupertinoColors.destructiveRed,
-                ),
+                }),
+            title: Text('Choose Date tst5'),
+            message: SizedBox(
+              height: MediaQuery.sizeOf(context).height / 2,
+              child: CupertinoDatePicker(
+                onDateTimeChanged: widget.onIOSDateChanged ??
+                    (dateTime) {
+                      selectedCalenderDate = dateTime;
+                      if (kDebugMode) {
+                        print('==>$dateTime<==');
+                      }
+                    },
+                minimumDate: minimumDate,
+                maximumDate:
+                    widget.lastDate ?? currentDate.add(Duration(days: 30)),
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: selectedCalenderDate,
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          title: Text('Choose Date tst4'),
-          message: SizedBox(
-            height: double.infinity / 2,
-            child: CupertinoDatePicker(
-              onDateTimeChanged: widget.onIOSDateChanged ??
-                  (dateTime) {
-                    selectedCalenderDate = dateTime;
-                    if (kDebugMode) {
-                      print('==>$dateTime<==');
-                    }
-                  },
-              minimumDate: minimumDate,
-              maximumDate:
-                  widget.lastDate ?? currentDate.add(Duration(days: 30)),
-              mode: CupertinoDatePickerMode.date,
-              initialDateTime: selectedCalenderDate,
             ),
           ),
         );
