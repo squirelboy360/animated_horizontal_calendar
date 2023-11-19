@@ -260,6 +260,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                     print('==>$dateTime<==');
                   }
                 },
+            minimumDate: DateTime.tryParse('2023-1-1'),
             mode: CupertinoDatePickerMode.date,
             initialDateTime: selectedCalenderDate,
           );
