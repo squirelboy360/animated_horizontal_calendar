@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:adoptive_calendar/adoptive_calendar.dart';
 import 'package:animated_horizontal_calendar/utils/calender_utils.dart';
 import 'package:animated_horizontal_calendar/utils/color.dart';
 import 'package:flutter/cupertino.dart';
@@ -257,31 +258,10 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
       context: context,
       builder: (context) {
         // If ios onIOSDateChanged param becomes a must
-        return CupertinoActionSheet(
-          cancelButton: CupertinoButton(
-              child: Text(
-                'show selection',
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          title: Text('Choose Date'),
-          message: SizedBox(
-            height: MediaQuery.sizeOf(context).height / 2,
-            child: CupertinoDatePicker(
-              onDateTimeChanged: widget.onIOSDateChanged ??
-                  (dateTime) {
-                    selectedCalenderDate = dateTime;
-                    if (kDebugMode) {
-                      print('==>$dateTime<==');
-                    }
-                  },
-              minimumDate: widget.firstDate,
-              maximumDate: widget.lastDate,
-              mode: CupertinoDatePickerMode.date,
-              initialDateTime: selectedCalenderDate,
-            ),
-          ),
+        return AdoptiveCalendar(
+          initialDate: selectedCalenderDate,
+          maxYear: widget.lastDate.year,
+          minYear: widget.lastDate.year,
         );
       },
     );
