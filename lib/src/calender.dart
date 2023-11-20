@@ -261,7 +261,8 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
         return AdoptiveCalendar(
           initialDate: selectedCalenderDate,
           maxYear: widget.lastDate.year,
-          minYear: widget.lastDate.year,
+          minYear: widget.firstDate.year,
+          
         );
       },
     );
