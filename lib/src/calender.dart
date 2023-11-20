@@ -270,7 +270,9 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
             height: MediaQuery.sizeOf(context).height / 2,
             child: CupertinoDatePicker(
               onDateTimeChanged: (dateTime) {
-                selectedCalenderDate = dateTime;
+                setState(() {
+                  selectedCalenderDate = dateTime;
+                });
                 if (kDebugMode) {
                   print('==>$dateTime<==');
                 }
