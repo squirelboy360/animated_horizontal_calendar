@@ -9,7 +9,7 @@ import 'package:intl/intl.dart' as international;
 typedef OnDateSelected(String date);
 
 class AnimatedHorizontalCalendar extends StatefulWidget {
-  final DateTime date, current;
+  final DateTime current;
   final DateTime firstDate;
   final void Function(DateTime)? onIOSDateChanged;
   final DateTime lastDate;
@@ -35,7 +35,6 @@ class AnimatedHorizontalCalendar extends StatefulWidget {
   AnimatedHorizontalCalendar({
     Key? key,
     required this.current,
-    required this.date,
     required this.tableCalenderIcon,
     this.textColor,
     this.curve,
@@ -79,7 +78,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
   @override
   void initState() {
     super.initState();
-    selectedCalenderDate = widget.date;
+    selectedCalenderDate = widget.current;
   }
 
   String format(DateTime date) =>
