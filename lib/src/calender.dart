@@ -11,7 +11,6 @@ typedef OnDateSelected(String date);
 class AnimatedHorizontalCalendar extends StatefulWidget {
   final DateTime current;
   final DateTime firstDate;
-  final void Function(DateTime)? onIOSDateChanged;
   final DateTime lastDate;
   final Color? textColor;
   final Color? colorOfWeek;
@@ -53,7 +52,6 @@ class AnimatedHorizontalCalendar extends StatefulWidget {
     this.selectedColor,
     required this.onDateSelected,
     this.selectPrevious = true,
-    this.onIOSDateChanged,
     required this.firstDate,
     required this.lastDate,
   }) : super(key: key);
