@@ -10,7 +10,7 @@ typedef OnDateSelected(String date);
 
 class AnimatedHorizontalCalendar extends StatefulWidget {
   final DateTime date, current;
-  final DateTime initialDate;
+  final DateTime firstDate;
   final void Function(DateTime)? onIOSDateChanged;
   final DateTime lastDate;
   final Color? textColor;
@@ -55,7 +55,7 @@ class AnimatedHorizontalCalendar extends StatefulWidget {
     required this.onDateSelected,
     this.selectPrevious = true,
     this.onIOSDateChanged,
-    required this.initialDate,
+    required this.firstDate,
     required this.lastDate,
   }) : super(key: key);
 
@@ -65,7 +65,7 @@ class AnimatedHorizontalCalendar extends StatefulWidget {
 
 class _CalendarState extends State<AnimatedHorizontalCalendar> {
   DateTime? _startDate;
-  var selectedCalenderDate;
+  DateTime selectedCalenderDate = DateTime.now();
   ScrollController _scrollController = new ScrollController();
 
   calenderAnimation() {
@@ -171,7 +171,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                               widget.onDateSelected!(_date.toString());
                               setState(() {
                                 selectedCalenderDate =
-                                    _startDate?.add(Duration(days: index));
+                                    _startDate!.add(Duration(days: index));
                                 _startDate =
                                     _startDate?.add(Duration(days: index));
                               });
@@ -180,7 +180,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                             widget.onDateSelected!(_date.toString());
                             setState(() {
                               selectedCalenderDate =
-                                  _startDate?.add(Duration(days: index));
+                                  _startDate!.add(Duration(days: index));
                               _startDate =
                                   _startDate?.add(Duration(days: index));
                             });
@@ -277,8 +277,8 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
                       print('==>$dateTime<==');
                     }
                   },
-              minimumDate: widget.lastDate,
-              maximumDate: widget.initialDate,
+              minimumDate: widget.firstDate,
+              maximumDate: widget.lastDate,
               mode: CupertinoDatePickerMode.date,
               initialDateTime: selectedCalenderDate,
             ),
@@ -306,7 +306,7 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
           child: child ?? SizedBox(),
         );
       },
-      firstDate: widget.initialDate,
+      firstDate: widget.firstDate,
       //?? DateTime.now().subtract(Duration(days: 30))
       lastDate: widget.lastDate,
       //?? DateTime.now().add(Duration(days: 30))
