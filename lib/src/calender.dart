@@ -262,7 +262,6 @@ class _CalendarState extends State<AnimatedHorizontalCalendar> {
           initialDate: selectedCalenderDate,
           maxYear: widget.lastDate.year,
           minYear: widget.firstDate.year,
-          
         );
       },
     );
